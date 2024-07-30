@@ -1,0 +1,35 @@
+//121. Best Time to Buy and Sell Stock
+#include <stdio.h>
+#include <limits.h> 
+int maxProfit(int* prices, int pricesSize) {
+    int minPrice = INT_MAX;
+    int maxProfit = 0;
+    
+    for (int i = 0; i < pricesSize; i++) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i]; // Update the minimum price
+        } else if (prices[i] - minPrice > maxProfit) {
+            maxProfit = prices[i] - minPrice; // Calculate and update the maximum profit
+        }
+    }
+    
+    return maxProfit;
+}
+
+int main() {
+    int n;//n is a no of days 
+    scanf("%d", &n);
+    
+    if (n <= 0) {
+        return 0;
+    }
+
+    int prices[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &prices[i]);
+    }
+    int result = maxProfit(prices, n);
+    printf("%d\n", result);
+    
+    return 0;
+}
